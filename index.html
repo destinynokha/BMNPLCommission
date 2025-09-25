@@ -330,10 +330,38 @@
             if (pin === CORRECT_PIN) {
                 document.getElementById('pinSection').style.display = 'none';
                 document.getElementById('formSection').style.display = 'block';
+                
+                // Add reload button for debugging
+                addReloadButton();
+                
+                // Show current script URL for debugging
+                console.log('Google Apps Script URL:', GOOGLE_SCRIPT_URL);
+                console.log('Testing API endpoint...');
+                
+                // Test the API endpoint
+                testApiEndpoint();
             } else {
                 alert('Invalid PIN. Please try again.');
                 document.getElementById('pinInput').value = '';
             }
+        }
+
+        function testApiEndpoint() {
+            // Test if the basic API endpoint works
+            fetch(GOOGLE_SCRIPT_URL)
+                .then(response => response.text())
+                .then(result => {
+                    console.log('Basic API test result:', result);
+                    if (result.includes('Honda Commission System')) {
+                        console.log('✅ API endpoint is working');
+                    } else {
+                        console.log('⚠️ API endpoint responding but may not be the right script');
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ API endpoint test failed:', error);
+                    showMessage('error', 'Cannot connect to Google Apps Script. Check if it\'s deployed correctly.');
+                });
         }
 
         function toggleFinancingFields() {
