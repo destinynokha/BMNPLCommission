@@ -174,6 +174,21 @@
             width: auto;
             margin: 0;
         }
+
+        .reload-btn {
+            background: #666;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .reload-btn:hover {
+            background: #555;
+        }
     </style>
 </head>
 <body>
@@ -197,21 +212,40 @@
                     <div class="form-group">
                         <label for="vehicleName">Vehicle Name <span class="required">*</span></label>
                         <select id="vehicleName" required>
-                            <option value="">Loading...</option>
+                            <option value="">Select Vehicle</option>
+                            <option value="Activa">Activa</option>
+                            <option value="Dio">Dio</option>
+                            <option value="CB Shine">CB Shine</option>
+                            <option value="SP 125">SP 125</option>
+                            <option value="Unicorn">Unicorn</option>
+                            <option value="Hornet">Hornet</option>
+                            <option value="X-Blade">X-Blade</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="model">Model <span class="required">*</span></label>
                         <select id="model" required>
-                            <option value="">Loading...</option>
+                            <option value="">Select Model</option>
+                            <option value="6G">6G</option>
+                            <option value="110">110</option>
+                            <option value="125">125</option>
+                            <option value="150">150</option>
+                            <option value="160">160</option>
+                            <option value="180">180</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="variant">Variant <span class="required">*</span></label>
                         <select id="variant" required>
-                            <option value="">Loading...</option>
+                            <option value="">Select Variant</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Drum">Drum</option>
+                            <option value="Disc">Disc</option>
+                            <option value="CBS">CBS</option>
+                            <option value="ABS">ABS</option>
                         </select>
                     </div>
 
@@ -223,7 +257,16 @@
                     <div class="form-group">
                         <label for="salesPerson">Sales Person <span class="required">*</span></label>
                         <select id="salesPerson" required>
-                            <option value="">Loading...</option>
+                            <option value="">Select Sales Person</option>
+                            <option value="Rajesh Kumar">Rajesh Kumar</option>
+                            <option value="Priya Sharma">Priya Sharma</option>
+                            <option value="Amit Singh">Amit Singh</option>
+                            <option value="Sneha Patel">Sneha Patel</option>
+                            <option value="Vikram Joshi">Vikram Joshi</option>
+                            <option value="Rohit Mehta">Rohit Mehta</option>
+                            <option value="Kavya Gupta">Kavya Gupta</option>
+                            <option value="Arjun Reddy">Arjun Reddy</option>
+                            <option value="Pooja Agarwal">Pooja Agarwal</option>
                         </select>
                     </div>
 
@@ -247,14 +290,30 @@
                     <div class="form-group conditional-field" id="financingCompanyGroup">
                         <label for="financingCompany">Financing Company</label>
                         <select id="financingCompany">
-                            <option value="">Loading...</option>
+                            <option value="">Select Financing Company</option>
+                            <option value="Bajaj Finserv">Bajaj Finserv</option>
+                            <option value="Hero FinCorp">Hero FinCorp</option>
+                            <option value="HDFC Bank">HDFC Bank</option>
+                            <option value="ICICI Bank">ICICI Bank</option>
+                            <option value="Cholamandalam Finance">Cholamandalam Finance</option>
+                            <option value="Tata Capital">Tata Capital</option>
+                            <option value="Mahindra Finance">Mahindra Finance</option>
                         </select>
                     </div>
 
                     <div class="form-group conditional-field" id="financeStaffGroup">
                         <label for="financeStaff">Finance Staff</label>
                         <select id="financeStaff">
-                            <option value="">Loading...</option>
+                            <option value="">Select Finance Staff</option>
+                            <option value="Rajesh Kumar">Rajesh Kumar</option>
+                            <option value="Priya Sharma">Priya Sharma</option>
+                            <option value="Amit Singh">Amit Singh</option>
+                            <option value="Sneha Patel">Sneha Patel</option>
+                            <option value="Vikram Joshi">Vikram Joshi</option>
+                            <option value="Rohit Mehta">Rohit Mehta</option>
+                            <option value="Kavya Gupta">Kavya Gupta</option>
+                            <option value="Arjun Reddy">Arjun Reddy</option>
+                            <option value="Pooja Agarwal">Pooja Agarwal</option>
                         </select>
                     </div>
 
@@ -273,7 +332,16 @@
                     <div class="form-group">
                         <label for="specialCommissionStaff">Special Commission Staff <span class="required">*</span></label>
                         <select id="specialCommissionStaff" required>
-                            <option value="">Loading...</option>
+                            <option value="">Select Special Commission Staff</option>
+                            <option value="Rajesh Kumar">Rajesh Kumar</option>
+                            <option value="Priya Sharma">Priya Sharma</option>
+                            <option value="Amit Singh">Amit Singh</option>
+                            <option value="Sneha Patel">Sneha Patel</option>
+                            <option value="Vikram Joshi">Vikram Joshi</option>
+                            <option value="Rohit Mehta">Rohit Mehta</option>
+                            <option value="Kavya Gupta">Kavya Gupta</option>
+                            <option value="Arjun Reddy">Arjun Reddy</option>
+                            <option value="Pooja Agarwal">Pooja Agarwal</option>
                         </select>
                     </div>
 
@@ -331,7 +399,7 @@
                 document.getElementById('pinSection').style.display = 'none';
                 document.getElementById('formSection').style.display = 'block';
                 
-                // Add reload button for debugging
+                // Add reload button for debugging (now with proper function)
                 addReloadButton();
                 
                 // Show current script URL for debugging
@@ -344,6 +412,24 @@
                 alert('Invalid PIN. Please try again.');
                 document.getElementById('pinInput').value = '';
             }
+        }
+
+        // Fixed: Added the missing addReloadButton function
+        function addReloadButton() {
+            // Check if reload button already exists
+            if (document.getElementById('reloadBtn')) return;
+            
+            const reloadBtn = document.createElement('button');
+            reloadBtn.id = 'reloadBtn';
+            reloadBtn.className = 'reload-btn';
+            reloadBtn.textContent = 'Reload Data';
+            reloadBtn.onclick = function() {
+                location.reload();
+            };
+            
+            // Add the button after the form
+            const formSection = document.getElementById('formSection');
+            formSection.appendChild(reloadBtn);
         }
 
         function testApiEndpoint() {
