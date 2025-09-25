@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Dealership - Sales Entry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            color: #d32f2f;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .pin-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pin-input {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .pin-btn {
+            background: #d32f2f;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+
+        .pin-btn:hover {
+            background: #b71c1c;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select, textarea {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #d32f2f;
+        }
+
+        .required {
+            color: #d32f2f;
+        }
+
+        .submit-btn {
+            background: #d32f2f;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #b71c1c;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .conditional-field {
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">HONDA</div>
+            <div class="subtitle">Sales Entry System</div>
+        </div>
+
+        <div class="pin-section" id="pinSection">
+            <h3 style="margin-bottom: 20px;">Enter Access PIN</h3>
+            <input type="password" id="pinInput" class="pin-input" placeholder="Enter PIN" maxlength="4">
+            <button onclick="checkPin()" class="pin-btn">Access</button>
+        </div>
+
+        <div class="form-section" id="formSection">
+            <form id="salesForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="vehicleName">Vehicle Name <span class="required">*</span></label>
+                        <select id="vehicleName" required>
+                            <option value="">Select Vehicle</option>
+                            <option value="Activa">Activa</option>
+                            <option value="Dio">Dio</option>
+                            <option value="CB Shine">CB Shine</option>
+                            <option value="SP 125">SP 125</option>
+                            <option value="Unicorn">Unicorn</option>
+                            <option value="Hornet">Hornet</option>
+                            <option value="X-Blade">X-Blade</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="model">Model <span class="required">*</span></label>
+                        <select id="model" required>
+                            <option value="">Select Model</option>
+                            <option value="6G">6G</option>
+                            <option value="125">125</option>
+                            <option value="SP">SP</option>
+                            <option value="150">150</option>
+                            <option value="160">160</option>
+                            <option value="180">180</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="variant">Variant <span class="required">*</span></label>
+                        <select id="variant" required>
+                            <option value="">Select Variant</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Drum">Drum</option>
+                            <option value="Disc">Disc</option>
+                            <option value="CBS">CBS</option>
+                            <option value="ABS">ABS</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staffName">Staff Name <span class="required">*</span></label>
+                        <input type="text" id="staffName" required placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerName">Customer Name <span class="required">*</span></label>
+                        <input type="text" id="customerName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="saleDate">Sale Date <span class="required">*</span></label>
+                        <input type="date" id="saleDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salePrice">Sale Price (₹) <span class="required">*</span></label>
+                        <input type="number" id="salePrice" required min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isFinanced">
+                            <label for="isFinanced">Is Financed?</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group conditional-field" id="financingCompanyGroup">
+                        <label for="financingCompany">Financing Company</label>
+                        <select id="financingCompany">
+                            <option value="">Select Financing Company</option>
+                            <option value="Bajaj Finserv">Bajaj Finserv</option>
+                            <option value="Hero FinCorp">Hero FinCorp</option>
+                            <option value="HDFC Bank">HDFC Bank</option>
+                            <option value="ICICI Bank">ICICI Bank</option>
+                            <option value="Cholamandalam Finance">Cholamandalam Finance</option>
+                            <option value="Tata Capital">Tata Capital</option>
+                            <option value="Mahindra Finance">Mahindra Finance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group conditional-field" id="doAmountGroup">
+                        <label for="doAmount">DO Amount (₹)</label>
+                        <input type="number" id="doAmount" min="0">
+                    </div>
+
+                    <div class="form-group conditional-field" id="doCommissionGroup">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="doCommissionPayable">
+                            <label for="doCommissionPayable">DO Commission Payable?</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="remarks">Remarks</label>
+                        <textarea id="remarks" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    Entry submitted successfully! You can add another entry.
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    Please check all required fields and try again.
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Entry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLJLSaePidKtnxqzKNDpCjUuegYlKM7-e611u4KS0CQ8uppMKAT77WQiJSj_5UVOYVSQ/exec';
+        
+        // Initialize
+        document.getElementById('saleDate').value = new Date().toISOString().split('T')[0];
+
+        function checkPin() {
+            const pin = document.getElementById('pinInput').value;
+            if (pin === '1122') {
+                document.getElementById('pinSection').style.display = 'none';
+                document.getElementById('formSection').style.display = 'block';
+            } else {
+                alert('Invalid PIN. Please try again.');
+                document.getElementById('pinInput').value = '';
+            }
+        }
+
+        // Handle financing checkbox
+        document.getElementById('isFinanced').addEventListener('change', function() {
+            const conditionalFields = ['financingCompanyGroup', 'doAmountGroup', 'doCommissionGroup'];
+            conditionalFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (this.checked) {
+                    field.style.display = 'flex';
+                } else {
+                    field.style.display = 'none';
+                    // Clear values when hiding
+                    if (fieldId === 'financingCompanyGroup') {
+                        document.getElementById('financingCompany').value = '';
+                    } else if (fieldId === 'doAmountGroup') {
+                        document.getElementById('doAmount').value = '';
+                    } else if (fieldId === 'doCommissionGroup') {
+                        document.getElementById('doCommissionPayable').checked = false;
+                    }
+                }
+            });
+        });
+
+        // Form validation and submission
+        document.getElementById('salesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) {
+                showMessage('error', 'Please check all required fields and try again.');
+                return;
+            }
+
+            // Prepare data
+            const formData = {
+                vehicleName: document.getElementById('vehicleName').value,
+                model: document.getElementById('model').value,
+                variant: document.getElementById('variant').value,
+                customerName: document.getElementById('customerName').value,
+                saleDate: document.getElementById('saleDate').value,
+                salePrice: document.getElementById('salePrice').value,
+                isFinanced: document.getElementById('isFinanced').checked,
+                financingCompany: document.getElementById('financingCompany').value || '',
+                doAmount: document.getElementById('doAmount').value || '0',
+                doCommissionPayable: document.getElementById('doCommissionPayable').checked,
+                remarks: document.getElementById('remarks').value || '',
+                timestamp: new Date().toISOString()
+            };
+
+            // Submit data (simulate for now)
+            submitData(formData);
+        });
+        });
+
+        function validateForm() {
+            const requiredFields = ['vehicleName', 'model', 'variant', 'customerName', 'saleDate', 'salePrice'];
+            let isValid = true;
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#f44336';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+
+            // Additional validation for financing
+            const isFinanced = document.getElementById('isFinanced').checked;
+            if (isFinanced) {
+                const financingCompany = document.getElementById('financingCompany').value;
+                const doAmount = document.getElementById('doAmount').value;
+                
+                if (!financingCompany) {
+                    document.getElementById('financingCompany').style.borderColor = '#f44336';
+                    isValid = false;
+                }
+                
+                if (!doAmount || doAmount <= 0) {
+                    document.getElementById('doAmount').style.borderColor = '#f44336';
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        function submitData(data) {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            // Submit to Google Sheets
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showMessage('success', 'Entry submitted successfully! You can add another entry.');
+                    resetForm();
+                } else {
+                    showMessage('error', 'Submission failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                showMessage('error', 'Network error. Please check your connection and try again.');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Entry';
+            });
+        }
+
+        function showMessage(type, message) {
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            if (type === 'success') {
+                successMsg.textContent = message;
+                successMsg.style.display = 'block';
+                errorMsg.style.display = 'none';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            } else {
+                errorMsg.textContent = message;
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('salesForm').reset();
+            document.getElementById('saleDate').value = new Date().toISOString().split('T')[0];
+            
+            // Hide conditional fields
+            const conditionalFields = ['financingCompanyGroup', 'doAmountGroup', 'doCommissionGroup'];
+            conditionalFields.forEach(fieldId => {
+                document.getElementById(fieldId).style.display = 'none';
+            });
+
+            // Reset border colors
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.style.borderColor = '#ddd';
+            });
+        }
+
+        // Allow Enter key for PIN
+        document.getElementById('pinInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPin();
+            }
+        });
+    </script>
+</body>
+</html>
