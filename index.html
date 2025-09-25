@@ -212,40 +212,21 @@
                     <div class="form-group">
                         <label for="vehicleName">Vehicle Name <span class="required">*</span></label>
                         <select id="vehicleName" required>
-                            <option value="">Select Vehicle</option>
-                            <option value="Activa">Activa</option>
-                            <option value="Dio">Dio</option>
-                            <option value="CB Shine">CB Shine</option>
-                            <option value="SP 125">SP 125</option>
-                            <option value="Unicorn">Unicorn</option>
-                            <option value="Hornet">Hornet</option>
-                            <option value="X-Blade">X-Blade</option>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="model">Model <span class="required">*</span></label>
                         <select id="model" required>
-                            <option value="">Select Model</option>
-                            <option value="6G">6G</option>
-                            <option value="110">110</option>
-                            <option value="125">125</option>
-                            <option value="150">150</option>
-                            <option value="160">160</option>
-                            <option value="180">180</option>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="variant">Variant <span class="required">*</span></label>
                         <select id="variant" required>
-                            <option value="">Select Variant</option>
-                            <option value="Standard">Standard</option>
-                            <option value="Deluxe">Deluxe</option>
-                            <option value="Drum">Drum</option>
-                            <option value="Disc">Disc</option>
-                            <option value="CBS">CBS</option>
-                            <option value="ABS">ABS</option>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
@@ -257,16 +238,14 @@
                     <div class="form-group">
                         <label for="salesPerson">Sales Person <span class="required">*</span></label>
                         <select id="salesPerson" required>
-                            <option value="">Select Sales Person</option>
-                            <option value="Rajesh Kumar">Rajesh Kumar</option>
-                            <option value="Priya Sharma">Priya Sharma</option>
-                            <option value="Amit Singh">Amit Singh</option>
-                            <option value="Sneha Patel">Sneha Patel</option>
-                            <option value="Vikram Joshi">Vikram Joshi</option>
-                            <option value="Rohit Mehta">Rohit Mehta</option>
-                            <option value="Kavya Gupta">Kavya Gupta</option>
-                            <option value="Arjun Reddy">Arjun Reddy</option>
-                            <option value="Pooja Agarwal">Pooja Agarwal</option>
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enteredBy">Entered By <span class="required">*</span></label>
+                        <select id="enteredBy" required>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
@@ -290,30 +269,14 @@
                     <div class="form-group conditional-field" id="financingCompanyGroup">
                         <label for="financingCompany">Financing Company</label>
                         <select id="financingCompany">
-                            <option value="">Select Financing Company</option>
-                            <option value="Bajaj Finserv">Bajaj Finserv</option>
-                            <option value="Hero FinCorp">Hero FinCorp</option>
-                            <option value="HDFC Bank">HDFC Bank</option>
-                            <option value="ICICI Bank">ICICI Bank</option>
-                            <option value="Cholamandalam Finance">Cholamandalam Finance</option>
-                            <option value="Tata Capital">Tata Capital</option>
-                            <option value="Mahindra Finance">Mahindra Finance</option>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
                     <div class="form-group conditional-field" id="financeStaffGroup">
                         <label for="financeStaff">Finance Staff</label>
                         <select id="financeStaff">
-                            <option value="">Select Finance Staff</option>
-                            <option value="Rajesh Kumar">Rajesh Kumar</option>
-                            <option value="Priya Sharma">Priya Sharma</option>
-                            <option value="Amit Singh">Amit Singh</option>
-                            <option value="Sneha Patel">Sneha Patel</option>
-                            <option value="Vikram Joshi">Vikram Joshi</option>
-                            <option value="Rohit Mehta">Rohit Mehta</option>
-                            <option value="Kavya Gupta">Kavya Gupta</option>
-                            <option value="Arjun Reddy">Arjun Reddy</option>
-                            <option value="Pooja Agarwal">Pooja Agarwal</option>
+                            <option value="">Loading...</option>
                         </select>
                     </div>
 
@@ -327,22 +290,6 @@
                             <input type="checkbox" id="doCommissionPayable">
                             <label for="doCommissionPayable">DO Commission Payable?</label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="specialCommissionStaff">Special Commission Staff <span class="required">*</span></label>
-                        <select id="specialCommissionStaff" required>
-                            <option value="">Select Special Commission Staff</option>
-                            <option value="Rajesh Kumar">Rajesh Kumar</option>
-                            <option value="Priya Sharma">Priya Sharma</option>
-                            <option value="Amit Singh">Amit Singh</option>
-                            <option value="Sneha Patel">Sneha Patel</option>
-                            <option value="Vikram Joshi">Vikram Joshi</option>
-                            <option value="Rohit Mehta">Rohit Mehta</option>
-                            <option value="Kavya Gupta">Kavya Gupta</option>
-                            <option value="Arjun Reddy">Arjun Reddy</option>
-                            <option value="Pooja Agarwal">Pooja Agarwal</option>
-                        </select>
                     </div>
 
                     <div class="form-group full-width">
@@ -404,14 +351,98 @@
                 
                 // Show current script URL for debugging
                 console.log('Google Apps Script URL:', GOOGLE_SCRIPT_URL);
-                console.log('Testing API endpoint...');
+                console.log('Loading dropdown data from Google Sheets...');
                 
-                // Test the API endpoint
-                testApiEndpoint();
+                // Load dropdown data from Google Sheets
+                loadDropdownData();
             } else {
                 alert('Invalid PIN. Please try again.');
                 document.getElementById('pinInput').value = '';
             }
+        }
+
+        // New function to load dropdown data from Google Sheets
+        function loadDropdownData() {
+            console.log('🔄 Starting to load dropdown data...');
+            
+            const url = GOOGLE_SCRIPT_URL + '?action=getDropdownData';
+            console.log('📡 Fetching from:', url);
+            
+            fetch(url)
+                .then(response => {
+                    console.log('📥 Response status:', response.status);
+                    console.log('📥 Response ok:', response.ok);
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('📊 Raw result:', result);
+                    
+                    if (result.success) {
+                        console.log('✅ Dropdown data received:', result.data);
+                        populateDropdowns(result.data);
+                        console.log('✅ Dropdown data loaded successfully');
+                        showMessage('success', 'Dropdown data loaded from Google Sheets');
+                    } else {
+                        console.error('❌ Failed to load dropdown data:', result.error);
+                        showMessage('error', 'Failed to load dropdown data: ' + result.error);
+                        loadFallbackData();
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ Error loading dropdown data:', error);
+                    console.error('❌ Error details:', error.message);
+                    showMessage('error', 'Cannot connect to Google Sheets. Using fallback data. Error: ' + error.message);
+                    // Fallback to default values if needed
+                    loadFallbackData();
+                });
+        }
+
+        // Populate dropdowns with data from Google Sheets
+        function populateDropdowns(data) {
+            // Vehicle Names
+            populateDropdown('vehicleName', data.vehicles, 'Select Vehicle');
+            
+            // Models
+            populateDropdown('model', data.models, 'Select Model');
+            
+            // Variants
+            populateDropdown('variant', data.variants, 'Select Variant');
+            
+            // Staff (for Sales Person, Finance Staff, and Entered By)
+            populateDropdown('salesPerson', data.staff, 'Select Sales Person');
+            populateDropdown('financeStaff', data.staff, 'Select Finance Staff');
+            populateDropdown('enteredBy', data.staff, 'Select Staff Member');
+            
+            // Financing Companies
+            populateDropdown('financingCompany', data.financingCompanies, 'Select Financing Company');
+        }
+
+        // Helper function to populate individual dropdown
+        function populateDropdown(elementId, options, defaultText) {
+            const select = document.getElementById(elementId);
+            select.innerHTML = `<option value="">${defaultText}</option>`;
+            
+            if (options && options.length > 0) {
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    select.appendChild(optionElement);
+                });
+            }
+        }
+
+        // Fallback data in case Google Sheets is not accessible
+        function loadFallbackData() {
+            const fallbackData = {
+                vehicles: ['Activa', 'Dio', 'CB Shine', 'SP 125', 'Unicorn', 'Hornet', 'X-Blade'],
+                models: ['6G', '110', '125', '150', '160', '180'],
+                variants: ['Standard', 'Deluxe', 'Drum', 'Disc', 'CBS', 'ABS'],
+                staff: ['Rajesh Kumar', 'Priya Sharma', 'Amit Singh', 'Sneha Patel', 'Vikram Joshi', 'Rohit Mehta', 'Kavya Gupta', 'Arjun Reddy', 'Pooja Agarwal'],
+                financingCompanies: ['Bajaj Finserv', 'Hero FinCorp', 'HDFC Bank', 'ICICI Bank', 'Cholamandalam Finance', 'Tata Capital', 'Mahindra Finance']
+            };
+            populateDropdowns(fallbackData);
+            console.log('✅ Fallback data loaded');
         }
 
         // Fixed: Added the missing addReloadButton function
@@ -492,7 +523,7 @@
         function validateForm() {
             const requiredFields = [
                 'vehicleName', 'model', 'variant', 'customerName', 
-                'salesPerson', 'saleDate', 'salePrice', 'specialCommissionStaff'
+                'salesPerson', 'saleDate', 'salePrice', 'enteredBy'
             ];
             
             let isValid = true;
@@ -555,7 +586,8 @@
                 financeStaff: document.getElementById('financeStaff').value || '',
                 doAmount: parseFloat(document.getElementById('doAmount').value) || 0,
                 doCommissionPayable: document.getElementById('doCommissionPayable').checked,
-                specialCommissionStaff: document.getElementById('specialCommissionStaff').value,
+                specialCommissionStaff: 'Manager', // Fixed value - always paid to Manager
+                enteredBy: document.getElementById('enteredBy').value, // New field to track who entered the data
                 remarks: document.getElementById('remarks').value || '',
                 timestamp: new Date().toISOString()
             };
